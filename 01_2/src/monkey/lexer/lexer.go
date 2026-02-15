@@ -7,6 +7,7 @@ type Lexer struct {
 	ch 				   byte // 現在検査中の文字
 }
 
+
 func New(input string) *Lexer {
 	l := &Lexer{input: input}
 	l.readChar()
