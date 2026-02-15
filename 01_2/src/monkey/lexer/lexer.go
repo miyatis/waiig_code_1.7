@@ -9,7 +9,6 @@ type Lexer struct {
 	ch 				   byte // 現在検査中の文字
 }
 
-
 func New(input string) *Lexer {
 	l := &Lexer{input: input}
 	l.readChar()
@@ -36,6 +35,18 @@ func (l *Lexer) NextToken() token.Token {
 			tok = newToken(token.ASSIGN, l.ch)
 		case '+':
 			tok = newToken(token.PLUS, l.ch)
+		case '-':
+			tok = newToken(token.MINUS, l.ch)
+		case '!':
+			tok = newToken(token.BANG, l.ch)
+		case '*':
+			tok = newToken(token.ASTERISK, l.ch)
+		case '/':
+			tok = newToken(token.SLASH, l.ch)
+		case '<':
+			tok = newToken(token.LT, l.ch)
+		case '>':
+			tok = newToken(token.GT, l.ch)
 		case ',':
 			tok = newToken(token.COMMA, l.ch)
 		case ';':
