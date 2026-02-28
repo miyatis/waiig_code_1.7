@@ -70,15 +70,6 @@ func (ls *LetStatement) String()       string {
 	return out.String()
 }
 
-type Identifier struct {
-	Token token.Token // token.IDENT トークン
-	Value string
-}
-
-func (i *Identifier) expressionNode()      {}
-func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
-func (i *Identifier) String()       string { return i.Value }
-
 // ReturnStatement (Statementインターフェースを実装)
 type ReturnStatement struct {
 	Token 	    token.Token // 'return'トークン
@@ -119,11 +110,21 @@ func (es *ExpressionStatement) String()       string {
 	return ""
 }
 
+// Identifier 識別子の式
+type Identifier struct {
+	Token token.Token // token.IDENT トークン
+	Value string
+}
+
+func (i *Identifier) expressionNode()      {}
+func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
+func (i *Identifier) String()       string { return i.Value }
 type IntegerLiteral struct {
 	Token token.Token
 	Value int64
 }
 
+// 整数リテラルの式
 func (il *IntegerLiteral) expressionNode() {}
 func (i1 *IntegerLiteral) TokenLiteral() string { return i1.Token.Literal }
 func (il *IntegerLiteral) String() string { return il.Token.Literal }
