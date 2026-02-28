@@ -118,3 +118,13 @@ func (es *ExpressionStatement) String()       string {
 
 	return ""
 }
+
+type IntegerLiteral struct {
+	Token token.Token
+	Value int64
+}
+
+func (il *IntegerLiteral) expressionNode() {}
+func (i1 *IntegerLiteral) TokenLiteral() string { return i1.Token.Literal }
+func (il *IntegerLiteral) String() string { return il.Token.Literal }
+
