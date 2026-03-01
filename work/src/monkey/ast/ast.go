@@ -124,8 +124,27 @@ type IntegerLiteral struct {
 	Value int64
 }
 
-// 整数リテラルの式
+// IntegerLiteral 整数リテラルの式
 func (il *IntegerLiteral) expressionNode() {}
 func (i1 *IntegerLiteral) TokenLiteral() string { return i1.Token.Literal }
 func (il *IntegerLiteral) String() string { return il.Token.Literal }
 
+// PrefixExpression 前置演算子の式
+type PrefixExpression struct {
+	Token    token.Token // 前置演算子トークン（例: '!'、'-'）
+	Operator string      // 演算子（例: "!"、"-"）
+	Right    Expression  // 演算子の右側の式
+}
+
+func (pe *PrefixExpression) expressionNode()      {}
+func (pe *PrefixExpression) TokenLiteral() string { return pe.Token.Literal }
+func (pe *PrefixExpression) String() string {
+	var out bytes.Buffer
+
+	out.WriteString("(")
+	out.WriteString(pe.Operator)
+	out.WriteString(pe.Right.String())
+	out.WriteString(")")
+
+	return out.String()
+}
