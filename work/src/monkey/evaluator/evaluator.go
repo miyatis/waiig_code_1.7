@@ -7,10 +7,14 @@ import (
 
 func Eval(node ast.Node) object.Object {
 	switch node := node.(type) {
+	// 文
 	case *ast.Program:
 		return evalStatements(node.Statements)
+
 	case *ast.ExpressionStatement:
 		return Eval(node.Expression)
+
+	// 式
 	case *ast.IntegerLiteral:
 		return &object.Integer{Value: node.Value}
 	}
